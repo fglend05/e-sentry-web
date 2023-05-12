@@ -9,8 +9,14 @@ const Dashboard = () => {
     <div className="">
       <Header />
       <HeaderT />
-      <Body />
-      <Charts />
+      <div className="flex py-5">
+        <div className="flex-[.5]">
+          <Body />
+        </div>
+        <div className="flex-[.5]">
+          <Charts />
+        </div>
+      </div>
     </div>
   );
 };

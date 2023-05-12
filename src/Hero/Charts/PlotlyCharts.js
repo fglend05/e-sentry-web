@@ -1,7 +1,14 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
-const PlotlyCharts = ({ parameterX, parameterY, predDataX, predDataY }) => {
+const PlotlyCharts = ({
+  parameterX,
+  parameterY,
+  predX,
+  predY,
+  upperBound,
+  lowerBound,
+}) => {
   const data = [
     {
       x: parameterX,
@@ -11,11 +18,30 @@ const PlotlyCharts = ({ parameterX, parameterY, predDataX, predDataY }) => {
       name: "Data",
     },
     {
-      x: predDataX,
-      y: predDataY,
+      x: predX,
+      y: predY,
       type: "scatter",
       mode: "lines",
       name: "Prediction",
+    },
+    {
+      x: predX,
+      y: upperBound,
+      type: "scatter",
+      mode: "lines",
+      line: { color: "rgba(0, 0, 0, 0)" },
+      name: "Upper Bound",
+      fill: "tonexty",
+      fillcolor: "rgba(0, 128, 0, 0.2)",
+    },
+    {
+      x: predX,
+      y: lowerBound,
+      type: "scatter",
+      mode: "lines",
+      fill: "tonexty",
+      fillcolor: "rgba(128, 0, 0, 0.2)",
+      name: "Lower Bound",
     },
   ];
   const layout = {
