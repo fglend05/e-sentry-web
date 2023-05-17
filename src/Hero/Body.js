@@ -1,7 +1,7 @@
 import React from "react";
 
 const Body = () => {
-  return <div className="flex">Body</div>;
+  return <div className="flex"></div>;
 };
 
 export default Body;
