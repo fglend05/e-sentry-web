@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Buttons from "./Components/Buttons";
+import { setDate } from "date-fns";
 
 const HeaderT = () => {
+  const [clock, setClock] = useState(new Date());
+
   const navTo = () => {};
+
+  const refreshClock = () => {
+    setClock(new Date());
+  };
+
+  useEffect(() => {
+    const timerId = setInterval(refreshClock, 1000);
+    return function cleanup() {
+      clearInterval(timerId);
+    };
+  }, []);
+  const options = { month: "long", year: "numeric", day: "numeric" };
   return (
     <div>
       <div className="flex items-center justify-evenly  flex-wrap bg-[#EEEEEE] p-1">
@@ -21,7 +36,7 @@ const HeaderT = () => {
             </p>
           </div>
         </div>
-        <div className="w-full  block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow ">
             <Buttons
               title="Water Quality"
@@ -30,6 +45,10 @@ const HeaderT = () => {
               textSize="font-semibold text-s"
             />
           </div>
+        </div>
+        <div className="flex flex-col p-6 px-10">
+          <div className="mb-3">{clock.toLocaleTimeString()}</div>
+          <div>{clock.toLocaleDateString(undefined, options)}</div>
         </div>
       </div>
     </div>
