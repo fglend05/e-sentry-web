@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./src/**/*"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "wave-pattern": "url('/src/assets/images/wave.svg')",
+      },
+    },
     screens: {
       sm: "640px",
       md: "768px",

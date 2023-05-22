@@ -68,6 +68,7 @@ const Charts = () => {
   const predTurb = extractData(predictedData, "turb_pred");
   const upperTurb = extractData(predictedData, "turb_upper");
   const lowerTurb = extractData(predictedData, "turb_lower");
+
   return (
     <div>
       <div className="flex m-3">
