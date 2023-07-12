@@ -4,6 +4,7 @@ import Header from "./Header";
 import HeaderT from "./HeaderT";
 import Charts from "./Charts";
 import Overview from "./Overview";
+import LoggerTwoChart from "./LoggerTwoChart";
 
 const Dashboard = () => {
   return (
@@ -17,6 +18,7 @@ const Dashboard = () => {
         </div>
         <div className="flex-[.5]">
           <Charts />
+          <LoggerTwoChart />
         </div>
       </div>
     </div>

@@ -3,11 +3,10 @@ import axios from "axios";
 import Chartsre from "./Charts/Chartsre";
 import PlotlyCharts from "./Charts/PlotlyCharts";
 
-const Charts = () => {
+const LoggerTwoChart = () => {
   const [data, setData] = useState([]);
   const [secondData, setSecondData] = useState([]);
   const [predictedData, setPredictedData] = useState([]);
-  const [predictedDataTwo, setPredictedDataTwo] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,18 +20,13 @@ const Charts = () => {
       });
     };
     const fetchPrediction = async () => {
-      await axios.get("http://localhost:3001/getPrediction").then((res) => {
-        setPredictedData(res.data);
-      });
+      await axios
+        .get("http://localhost:3001/getSecondPrediction")
+        .then((res) => {
+          setPredictedData(res.data);
+        });
     };
-    const fetchPredictionforloggertwo = async () => {
-      await axios.get("http://localhost:3001/getPredictionTwo").then((res) => {
-        setPredictedDataTwo(res.data);
-      });
-    };
-
     fetchPrediction();
-    fetchPredictionforloggertwo();
     fetchData();
     fetchSecondData();
   }, []);
@@ -42,13 +36,12 @@ const Charts = () => {
   };
 
   //Fetch parameters from Logger 1
-  const date = extractData(data, "Date");
-  const temp = extractData(data, "Temperature");
-  const ph = extractData(data, "PH");
-  const SPCond = extractData(data, "SPCond");
-  const CHL = extractData(secondData, "CHL");
-  const NTR = extractData(data, "NITRATE");
-  const TURB = extractData(data, "TURBIDITY");
+  const date = extractData(secondData, "Date");
+  const temp = extractData(secondData, "Temp");
+  const SPCond = extractData(secondData, "SPCond");
+  const CHL = extractData(data, "CHL");
+  const NTR = extractData(secondData, "NITRATE");
+  const TURB = extractData(secondData, "TURBIDITY");
 
   //Start Prediction
   const predDate = extractData(predictedData, "Date");
@@ -56,10 +49,6 @@ const Charts = () => {
   const predTemp = extractData(predictedData, "temp_pred");
   const upperTemp = extractData(predictedData, "temp_upper");
   const lowerTemp = extractData(predictedData, "temp_lower");
-  //PH
-  const predPh = extractData(predictedData, "ph_pred");
-  const upperPh = extractData(predictedData, "ph_upper");
-  const lowerPh = extractData(predictedData, "ph_lower");
   //SPCond
   const predSc = extractData(predictedData, "sc_pred");
   const upperSc = extractData(predictedData, "sc_upper");
@@ -89,16 +78,6 @@ const Charts = () => {
           predX={predDate}
           upperBound={upperTemp}
           lowerBound={lowerTemp}
-        />
-        <PlotlyCharts
-          data={data}
-          paramater="PH"
-          parameterX={date}
-          parameterY={ph}
-          predY={predPh}
-          predX={predDate}
-          upperBound={upperPh}
-          lowerBound={lowerPh}
         />
       </div>
       <div className="flex m-3">
@@ -149,4 +128,4 @@ const Charts = () => {
   );
 };
 
-export default Charts;
+export default LoggerTwoChart;
