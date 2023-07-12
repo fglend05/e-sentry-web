@@ -5,10 +5,10 @@ import { Carousel } from "react-responsive-carousel";
 const Overview = () => {
   return (
     <div className="w-full">
-      <Carousel>
+      {/* <Carousel>
         <CarouselComponent title="Temperature" />
         <CarouselComponent title="Temperature" />
-      </Carousel>
+      </Carousel> */}
     </div>
   );
 };
