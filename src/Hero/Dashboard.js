@@ -18,7 +18,7 @@ const Dashboard = () => {
         </div>
         <div className="flex-[.5]">
           <Charts />
-          <LoggerTwoChart />
+          {/* <LoggerTwoChart /> */}
         </div>
       </div>
     </div>

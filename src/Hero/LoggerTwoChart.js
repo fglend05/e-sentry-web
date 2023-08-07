@@ -79,8 +79,6 @@ const LoggerTwoChart = () => {
           upperBound={upperTemp}
           lowerBound={lowerTemp}
         />
-      </div>
-      <div className="flex m-3">
         <PlotlyCharts
           data={data}
           paramater="Specific Conductance"
@@ -91,6 +89,8 @@ const LoggerTwoChart = () => {
           upperBound={upperSc}
           lowerBound={lowerSc}
         />
+      </div>
+      <div className="flex m-3">
         <PlotlyCharts
           data={data}
           paramater="Chlorine"
@@ -102,7 +102,7 @@ const LoggerTwoChart = () => {
           lowerBound={lowerCl}
         />
       </div>
-      <div className="flex m-3">
+      {/* <div className="flex m-3">
         <PlotlyCharts
           data={data}
           paramater="Nitrate"
@@ -123,7 +123,7 @@ const LoggerTwoChart = () => {
           upperBound={upperTurb}
           lowerBound={lowerTurb}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

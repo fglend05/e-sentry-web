@@ -12,7 +12,10 @@ const Charts = () => {
   useEffect(() => {
     const fetchData = async () => {
       await axios.get("http://localhost:3001/posts").then((res) => {
-        setData(res.data);
+        const sortedData = res.data.sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        );
+        setData(sortedData);
       });
     };
     const fetchSecondData = async () => {
@@ -25,14 +28,8 @@ const Charts = () => {
         setPredictedData(res.data);
       });
     };
-    const fetchPredictionforloggertwo = async () => {
-      await axios.get("http://localhost:3001/getPredictionTwo").then((res) => {
-        setPredictedDataTwo(res.data);
-      });
-    };
 
     fetchPrediction();
-    fetchPredictionforloggertwo();
     fetchData();
     fetchSecondData();
   }, []);
@@ -114,7 +111,7 @@ const Charts = () => {
         />
         <PlotlyCharts
           data={data}
-          paramater="Chlorine"
+          paramater="Chlorophyll"
           parameterX={date}
           parameterY={CHL}
           predY={predCl}

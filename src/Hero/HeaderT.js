@@ -20,7 +20,7 @@ const HeaderT = () => {
   const options = { month: "long", year: "numeric", day: "numeric" };
   return (
     <div>
-      <div className="flex items-center justify-evenly  flex-wrap bg-[#EEEEEE] p-1">
+      <div className="flex items-center justify-evenly  flex-wrap bg-wave-pattern-two bg-cover bg-center p-1">
         <div className="flex items-center flex-shrink-0 text-black mr-28 pl-6">
           <img src="" alt="E" className="fill-current h-8 w-10 mr-7" />
           <div className="flex flex-col">
@@ -40,6 +40,18 @@ const HeaderT = () => {
           <div className="text-sm lg:flex-grow ">
             <Buttons
               title="Water Quality"
+              textColor="text-black"
+              onClick={navTo}
+              textSize="font-semibold text-s"
+            />
+            <Buttons
+              title="About E-SENTRY"
+              textColor="text-black"
+              onClick={navTo}
+              textSize="font-semibold text-s"
+            />
+            <Buttons
+              title="About Us"
               textColor="text-black"
               onClick={navTo}
               textSize="font-semibold text-s"
