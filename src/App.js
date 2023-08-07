@@ -1,10 +1,18 @@
+import { Routes, Route } from "react-router-dom";
 import Dashboard from "./Hero/Dashboard";
 
 function App() {
   return (
-    <div className="mx-3">
-      <Dashboard />
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Dashboard />
+          </>
+        }
+      />
+    </Routes>
   );
 }
 

@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         "wave-pattern": "url('/src/assets/images/wave.svg')",
+        "wave-pattern-two": "url('/src/assets/images/headerbg.svg')",
+        "wave-pattern-two-inverted":
+          "url('/src/assets/images/headerbginverted.svg')",
       },
     },
     screens: {

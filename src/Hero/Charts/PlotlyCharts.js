@@ -54,7 +54,7 @@ const PlotlyCharts = ({
     title: paramater,
     xaxis: {
       title: "Date",
-      range: [new Date() - 10 * 24 * 60 * 60 * 1000, new Date()],
+      range: [new Date() - 7 * 24 * 60 * 60 * 1000, new Date()],
     },
     yaxis: { title: "Value" },
     width: 500,
