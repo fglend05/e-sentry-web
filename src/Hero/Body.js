@@ -14,12 +14,14 @@ const Body = () => {
 
   useEffect(() => {
     const fetchWQI = async () => {
-      await axios.get("http://localhost:3001/getWQI").then((res) => {
-        const sortedData = res.data.sort(
-          (a, b) => new Date(a.date) - new Date(b.date)
-        );
-        setData(sortedData);
-      });
+      await axios
+        .get(process.env.REACT_APP_LOCAL_API + "/getWQI")
+        .then((res) => {
+          const sortedData = res.data.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+          );
+          setData(sortedData);
+        });
     };
 
     fetchWQI();
@@ -30,10 +32,11 @@ const Body = () => {
   };
 
   const wqipred = extractData(data, "Prediction");
+  const wqiResult = wqipred.slice(-1)[0];
 
   return (
     <div className="flex justify-center">
-      <div className="item-center w-full">
+      <div className="item-center w-full p-5">
         <svg
           className="fill-[#0099ff]"
           xmlns="http://www.w3.org/2000/svg"
@@ -49,11 +52,11 @@ const Body = () => {
             <path d="M 2.94 524.63 393.07 428.61 537.66 756.68 533 757.39 490.88 757.39 475.37 776.73 444.33 811.11 395.57 824 309.12 817.55 253.7 808.96 229.32 811.11 189.42 821.85 120.7 791.77 105.18 770.28 85.23 744.49 63.07 705.81 47.55 656.39 36.47 622.01 27.6 594.07 12.08 557.54 3.22 531.76 2.94 524.63 Z" />
             <path
               className={
-                wqipred.slice(-1)[0] === "Excellent"
+                wqiResult === "Excellent"
                   ? "fill-[#00FF00]"
-                  : wqipred.slice(-1)[0] === "Good"
+                  : wqiResult === "Good"
                   ? "fill-[#FFFF00]"
-                  : wqipred.slice(-1)[0] === "Poor"
+                  : wqiResult === "Poor"
                   ? "fill-[#FF0000]"
                   : ""
               }
@@ -63,7 +66,7 @@ const Body = () => {
           </g>
         </svg>
       </div>
-      <div className="ml-auto">
+      <div className="ml-auto p-5">
         <div className="pb-5 text-center">
           <p className="font-bold ">Legends </p>
         </div>
@@ -71,7 +74,7 @@ const Body = () => {
           <HeatmapLegend colorRanges={colorRanges} />
         </div>
         <div className="mt-5">
-          <Heatmap wqi={wqipred.slice(-1)[0]} />
+          <Heatmap wqi={wqiResult} />
         </div>
       </div>
     </div>
