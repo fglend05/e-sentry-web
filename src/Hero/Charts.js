@@ -11,22 +11,28 @@ const Charts = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:3001/posts").then((res) => {
-        const sortedData = res.data.sort(
-          (a, b) => new Date(a.date) - new Date(b.date)
-        );
-        setData(sortedData);
-      });
+      await axios
+        .get(process.env.REACT_APP_LOCAL_API + "/posts")
+        .then((res) => {
+          const sortedData = res.data.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+          );
+          setData(sortedData);
+        });
     };
     const fetchSecondData = async () => {
-      await axios.get("http://localhost:3001/loggertwo").then((res) => {
-        setSecondData(res.data);
-      });
+      await axios
+        .get(process.env.REACT_APP_LOCAL_API + "/loggertwo")
+        .then((res) => {
+          setSecondData(res.data);
+        });
     };
     const fetchPrediction = async () => {
-      await axios.get("http://localhost:3001/getPrediction").then((res) => {
-        setPredictedData(res.data);
-      });
+      await axios
+        .get(process.env.REACT_APP_LOCAL_API + "/getPrediction")
+        .then((res) => {
+          setPredictedData(res.data);
+        });
     };
 
     fetchPrediction();
