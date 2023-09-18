@@ -12,7 +12,7 @@ const Charts = () => {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(process.env.REACT_APP_LOCAL_API + "/posts")
+        .get("http://localhost/MVCPhP/public/parameter")
         .then((res) => {
           const sortedData = res.data.sort(
             (a, b) => new Date(a.date) - new Date(b.date)
@@ -22,14 +22,14 @@ const Charts = () => {
     };
     const fetchSecondData = async () => {
       await axios
-        .get(process.env.REACT_APP_LOCAL_API + "/loggertwo")
+        .get("http://localhost/MVCPhP/public/parameter/LoggerTwos")
         .then((res) => {
           setSecondData(res.data);
         });
     };
     const fetchPrediction = async () => {
       await axios
-        .get(process.env.REACT_APP_LOCAL_API + "/getPrediction")
+        .get("http://localhost/MVCPhP/public/parameter/preds")
         .then((res) => {
           setPredictedData(res.data);
         });
